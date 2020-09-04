@@ -1,0 +1,49 @@
+We want to create an object whose properties are optional but can be set only at the time of its creation
+ and no updates are allowed to that once it is created.
+ So how would we do that ?
+
+ The answer is : Builder Design Pattern
+
+ Now an argument may say that, why not just pass all the properties to the constructor and remove all setter methods.
+ Wont that fix the problem ?
+ The answer is Yes, it will fix the problem but adding too many arguments to any method including a constructor
+ is a bad coding practice, because a programmer will have to the documentation over and over to make sure
+ arguments are passed in correct order, so it is never encouraged.
+ The problem is when such parameters are passed to a constructor, the programmer must know each and every parameter
+ and the order in which is should be passed to the constructor which is a code smell as just a change in order
+ may introduce issues.
+
+
+
+Summarizing :
+when to use builder pattern:
+1. when an object needs too many properties to be set before it can be created.
+2. when there is a complex process of creating that object i.e multiple steps like datasource
+ creation or additional validations
+3. When we want to give control of the creation of this complex process to an another class (builder class)
+    to simplify the actual class.
+
+
+
+
+    SOME EXAMPLES OF BUILDER PATTERN FROM JDK :
+
+    1. StringBuilder
+        StringBuilder builder  = new StringBuilder();
+        String s = builder.append("A")
+                .append("B")
+                .toString();
+
+
+    2. Calendar
+        Calendar.Builder builder1 = new Calendar.Builder();
+        builder1.setWeekDate(2020, 9, 4 )
+                .setTimeZone(TimeZone.getDefault())
+                .setInstant(new Date())
+                .build();
+
+
+
+    CAUTION : When using builder pattern, we mark the properties optional.
+    So if the object has some necessary properties, it must be validated either in the build method
+    or some sensible defaults must be added before creating the object.

@@ -1,0 +1,15 @@
+Design principles :
+
+Design principles are of 3 types:
+1. Creational  - They deal with the process in which objects are created.
+    - Builder
+    - Simple Factory
+    - Factory Method
+    - Prototype
+    - Singleton
+    - Abstract Factory
+    - Object Pool
+2. Structural  - They decide how classes and objects are arranged and composed.
+3. Behavioural - They decide how classes and objects will interact/communicate with each other.
+
+

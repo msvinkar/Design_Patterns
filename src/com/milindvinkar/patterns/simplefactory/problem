@@ -1,0 +1,33 @@
+What is Simple Factory : Simple factory is a way of encapsulating away the object creation logic
+ in a separate class with static method which then returns the expected object based on some argument passed.
+
+Imagine this method :
+
+public class PostFactory {
+
+public Post getPost(String type) {
+    switch(type) {
+    case "blog" : return new BlogPost();
+    case "news" : return new NewsPost();
+    case "product" : return new ProductPost();
+    }
+}
+
+}
+
+In this case, the creation of the object of type Post depends on a type parameter.
+So in such case having such a method at some central place in you application removes duplication of those if else
+blocks for creating a post.
+
+This pattern of adding a class which has such a method is called SimpleFactory.
+
+When the number of branches in the simple factory (case statements) increase then the code might start looking
+a bit complex. In such cases simple factory may be replaced with a factory method, where it does not need to know
+how many subclasses fall under that type.
+@See Factory method for more details.
+
+
+Examples from JDK:
+1.  java.text.NumberFormat.getInstance(sun.util.locale.provider.LocaleProviderAdapter, java.util.Locale, int)
+
+2.

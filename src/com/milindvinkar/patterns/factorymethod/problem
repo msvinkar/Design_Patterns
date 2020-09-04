@@ -1,0 +1,25 @@
+Factory method:
+This is very much similar to Simple Factory pattern where object creation logic is placed at a central
+location/class which can then be reused by all the other classes in the whole application.
+The main difference is that, factory method uses inheritance as base to work and it does not
+need to know how many child objects does the base class has.
+So object creation is delegated to subclasses and then they decide which object to create.
+This is done by creating an abstract method or default method in the base class which is implemented/overridden by child class which takes the
+job to create the object.
+So there will be a base factory class lets say 'Creator' and method 'create()' which creates an instance of some
+object of Type T.
+And then there has to be created N subclasses of creator which implement create() method to return a different
+implementation of T where N is the number of different implementations.
+
+
+Factory method can be used if your code satisfies 3 requirements ?
+1. you are not working with legacy code (because changing it will need retesting the whole code).
+2. you are aware of the possibility that new subclasses can be added to the hierarchy often and you dont want the
+    current code to change because of them.
+3. you need to add some custom logic in the factory classes which you want to keep separate from the original class.
+Like encryption, validation, additional operations.
+
+
+Issues with factory method ?
+1. Factory method creates a new instance per concrete class so when the hierarchy has a large number of child classes
+it the number of factory classes will becomes large and will become a problem soon.

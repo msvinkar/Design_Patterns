@@ -1,0 +1,28 @@
+When object creation is costly then creating a new object every time may become an overhead to the application.
+Like if an object creation involves a network/DB call or some complex computation or repeated number of steps
+then Prototype pattern helps to reduce the cost of object creation.
+
+In this case, an object is created at the time of application startup and this is used as a prototype for all
+other future instances to be created.
+So this first object will be made with all the complex procedure.
+And once this object is ready, when next time a new instance is requested, instead of going through whole
+process, clone() method is called on old object and a copy is returned thus reducing the whole cost of
+creational steps if it were to be created from scratch.
+
+When should we not use prototype ?
+1. when the class has multiple mutable properties then in that case a deep copy is needed for all those properties
+which in turn increases the cost of cloning.
+2. By default clone() method in Object class performs a shallow copy. So in case you need a deep copy, you need
+to override clone and specifically add that logic.
+3. Also, clone() method also allows CloneNotSupportedException() to be thrown by subclasses so it needs to be
+handled at places where you are requesting a clone. At those places, you need to add alternate ways to create instance.
+
+
+Summarizing:
+
+1. Objects which have most of the properties/states immutable are good candidates for becoming a prototype.
+2. We use prototype to skip the costly operations which may happen while object creation.
+3. Clone method is used for copying prototype object.
+4. When implementing clone method, must verify which objects are supposed to be deep cloned and which
+    are supposed to be shallow cloned.
+5. It is necessary that your prototype object has all the states ready before clone() is even called !

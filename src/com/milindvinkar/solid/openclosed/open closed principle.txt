@@ -1,0 +1,27 @@
+
+ ++ Open for Extension and Closed for Modification
+    - Modules/ classes/ methods should be open for extension and closed for modification.
+    Which means : inheritance is allowed but modification to existing code is not.
+
+    So for example, if you want to change how a method should behave, its better to override the method than
+    changing the existing code by adding if clauses in the method and creating branches.
+
+    Imagine an existing class with name FileParser which has parse(File file) method which takes a File as an input by default
+    and lets say it is assumed that the file will be of type Text. Also lets assume that this code is well written
+    and tested.
+    Now lets say we want to change it to accept XML file as well.
+    So this principle says that instead of changing the existing code, we can create a child class with name say
+    'XMLFileParser' which extends FileParser and then override the parse(File file) method.
+    This will ensure that no change is made to the original class so that no additional testing is needed for that part.
+
+    Now this is also done using abstraction.
+    When we add an abstract method in a class then the extending class must implement that method this making it open for extension.
+    However the implementation of every child class is unaffected by other child classes so that way its closed for modification.
+
+
+    SO HOW TO IMPLEMENT THE PRINCIPLE WHEN YOU CODE :
+
+    1. collect everything common across all possible child classes in base class
+    2. add methods around it and test base class thoroughly and when done assume its closed for modification.
+    3. When this is done add abstract methods in base class to make it open for extension.
+    4. Create child classes and implement abstract methods.

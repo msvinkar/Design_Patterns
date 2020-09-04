@@ -1,0 +1,34 @@
+
+Liskov's substitution principle says that :
+    - We must be able to substitute base class objects with child class objects and that should not
+    change the behavior or characteristics (semantics) of the program.
+
+    Consider this example,
+    Lets say we have a base class called as Rectangle which takes length and height in its constructor.
+    Now we know that geometrically A square is also a rectangle.
+    So we can define Square class as 'Square extends Rectangle'.
+
+   Now suppose there is are three methods in Rectangle class. setWidth(), setHeight(), getArea().
+   The square will also inherit these methods.
+   So programmatically it will become possible to set width and height of the square.
+   However we know that for a square it is necessary that width == height.
+   So if we override the setWidth and setHeight to set width = height, the program will be semantically correct.
+   But then it will break the Liskov's Substitution principle.
+
+   So if we say Rectangle Square  = new Rectangle and then call getArea() after setting different width and height.
+   The area will still be calculated as square of a side and not at width * height.
+   So here substitution is failing.
+
+   Then how to fix it ?
+   There is only one way to do it. To break the inheritance between Square and Rectangle.
+   So even though in real life a square can be represented with an 'IS-A' relationship but in OOP it can
+   not be as it is breaking Liskov's principal.
+
+   So what can be done instead to achieve the similar behavior ?
+   The problem : setWidth and setHeight does not apply to Square but getArea() does.
+   The solution : Do not add these to Square class but add getArea().
+   So since the getArea() is common is would be nice if we can extract an interface here.
+
+   So the final solution is to create an interface lets say Shape which has a method getArea()
+   and then both Rectangle and Square implement this and then both get chance to find their
+   areas in their own respective ways.

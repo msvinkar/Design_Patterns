@@ -1,0 +1,56 @@
+SOLID is a set of design principles that every programmer must use
+while writing the code to ensure easier maintainability and better execution of the code.
+
+each letter in SOLID represents a principle :
+
+S - Single Responsibility Principle
+O - Open Closed Principle
+L - Liskov's substitution Principle
+I - Interface Segregation Principle
+D - Dependency Inversion
+
+Here are some descriptive comments about each of them :
+
+++ Single Responsibility Principle
+ - This principle says that every class should have only one reason to change. So what does it mean ?
+     - Imagine a class with name RequestHandler. So ideally the only work it should do is to accept request
+     and delegate the work to expected worker.
+     - Now lets say your handle method has these steps in it :
+        1. accept request parameters
+        2. validate request parameters
+        3. find necessary worker to delegate request to and calls its method to do the necessary work.
+        4. return response it got from the worker method
+     - In this case this, there are 3 reasons for this class to change:
+        1. request parameters needs to be changed
+        2. validation needs to be updated
+        3. worker method needs to be changed.
+        So we can say that, this class does not follow single responsibility principle.
+     - So how to fix this ?
+        - Lets say we have 3 classes :
+            1. RequestHandler
+            2. RequestParamValidator
+            3. TaskDelegator
+        In this case, if we use RequestParamValidator and TaskDelegator class in requestHandler class
+        then RequestHandler class wont change when validation changes or worker method changes.
+        In case validation changes RequestParameterValidator class will change.
+        And in case worker method changes , TaskDelegator will change.
+        So now all these classes have only one reason to change.
+        So now we can say 'Single Responsibility Principle' is being followed.
+
+      The idea is to refactored the code to a point that every class has only one thing to do.
+
+
+ ++ Open for Extension and Closed for Modification
+    - Modules/ classes/ methods should be open for extension and closed for modification.
+    Which means : inheritance is allowed but modification to existing code is not.
+
+    So for example, if you want to change how a method should behave, its better to override the method than
+    changing the existing code by adding if clauses in the method and creating branches.
+
+    Imagine an existing class with name FileParser which has parse(File file) method which takes a File as an input by default
+    and lets say it is assumed that the file will be of type Text. Also lets assume that this code is well written
+    and tested.
+    Now lets say we want to change it to accept excel file as well.
+    So this principle says that instead of changing the existing code, we can create a child class with name say
+    'ExcelFileParser' which extends FileParser and then override the parse(File file) method.
+    This will ensure that no change is made to the original class so that no additional testing is needed for that part.

@@ -1,0 +1,27 @@
+
+Interface Segregation: CLIENTS SHOULD NOT BE FORCED TO DEPEND UPON INTERFACES THAT THEY DO NOT USE.
+
+Meaning :
+    It means an interface should not have too many methods / methods which are not related to each other.
+    When an interface has such methods it is considered as 'Interface Pollution.'
+    So the idea is to avoid interface pollution.
+
+    Lets take an example,
+    Suppose we have an interface with name StorageService which takes any item of type Entity.
+    And lets say there are 4 methods in it
+        - save(Entity entity)
+        - remove(Entity entity)
+        - findById(Long id)
+        - getName(Long id)
+
+    Now lets say we have two child classes of Entity.
+     - Person (it has a name)
+     - Order (it does not have a name)
+
+     so when we implement a PersonStorageService then all 4 methods are applicable for a Person.
+     But when we are implementing OrderStorageService then getName() method is not applicable to an Order
+     as it does not have a name !
+     So if we override the method in OrderStorageService then there has to be either a dummy implementation
+     or an exception has to be thrown saying not supported operation.
+     So in this case we can say that the getName() method has polluted the StorageService interface and hence
+     must be removed.
